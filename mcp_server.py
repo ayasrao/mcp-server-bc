@@ -54,7 +54,10 @@ def fetch_customers():
     res = requests.get(cust_url, headers=headers)  
     res.raise_for_status()  
     return res.json().get("value", [])  
-  
+  @app.get("/")
+def health_check():
+    return {"status": "ok"}
+
 @app.post("/predict", response_model=MCPOutput)  
 async def predict(request: Request):  
     # Accepts any JSON MCPInput, returns the customer list as "predictions"  
@@ -66,4 +69,4 @@ async def predict(request: Request):
             "type": "customer",  
             "count": len(customers)  
         }  
-    )  
+    )
