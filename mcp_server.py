@@ -54,7 +54,7 @@ def fetch_customers():
     res = requests.get(cust_url, headers=headers)  
     res.raise_for_status()  
     return res.json().get("value", [])  
-  @app.get("/")
+@app.get("/")
 def health_check():
     return {"status": "ok"}
 
