@@ -70,3 +70,11 @@ async def predict(request: Request):
             "count": len(customers)  
         }  
     )
+if __name__ == "__main__":
+    try:
+        customers = fetch_customers()
+        print(f"✅ Retrieved {len(customers)} customers.")
+        for cust in customers[:5]:
+            print(f"- {cust.get('displayName') or cust.get('name')} (ID: {cust.get('id')})")
+    except Exception as e:
+        print("❌ Error:", e)
